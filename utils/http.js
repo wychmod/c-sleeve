@@ -7,6 +7,9 @@ class Http {
             url: `${config.apiBaseUrl}${url}`,
             data,
             method,
+            header: {
+                appkey: config.appkey
+            }
         });
         return res.data
     }
