@@ -1,17 +1,25 @@
-// components/category-grid/index.js
+// components/sale-explain/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    grid:Array
+    texts:Array
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    _texts:Array
+  },
 
+  observers:{
+    'texts':function (texts) {
+        this.setData({
+          _texts:texts
+        })
+    }
   },
 
   /**
