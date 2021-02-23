@@ -21,16 +21,27 @@ Page({
   },
 
   async initAllData() {
-    const theme = new Theme()
-    await theme.getThemes()
-    const themeA = theme.getHomeLocationA()
-    const themeE = theme.getHomeLocationE()
+    const theme = new Theme();
+    await theme.getThemes();
+    const themeA = theme.getHomeLocationA();
+    const themeE = theme.getHomeLocationE();
+    let themeESpu = [];
+
+    if (themeE.online) {
+      const data = await Theme.getHomeLocationESpu();
+      if (data) {
+        themeESpu = data.spu_list.slice(0, 8)
+      }
+    }
+    const themeF = theme.getHomeLocationF()
     const bannerB = await Banner.getHomeLocationB();
     const grid = await Category.getHomeLocationC();
     const activityD = await Activity.getHomeLocationD();
     this.setData({
       themeA,
       themeE,
+      themeESpu,
+      themeF,
       bannerB,
       grid,
       activityD
